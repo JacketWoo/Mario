@@ -43,7 +43,7 @@ int main()
      *
      * @return 
      */
-    mario::Mario *m = new mario::Mario(10, fh, 2);
+    mario::Mario *m = new mario::Mario(10, fh, "./log", 2);
 
     std::string item2 = "heiheiadfasdf";
     std::string item = "a";

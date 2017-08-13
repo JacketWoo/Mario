@@ -23,7 +23,7 @@ struct Mario::Writer {
   explicit Writer(port::Mutex* mu) : cv(mu) { }
 };
 
-Mario::Mario(uint32_t consumer_num, Consumer::Handler *h, int32_t retry)
+Mario::Mario(uint32_t consumer_num, Consumer::Handler *h, const std::string& mario_path, int32_t retry)
   : consumer_num_(consumer_num),
   h_(h),
   item_num_(0),
@@ -38,7 +38,7 @@ Mario::Mario(uint32_t consumer_num, Consumer::Handler *h, int32_t retry)
   retry_(retry),
   pool_(NULL),
   exit_all_consume_(false),
-  mario_path_("./log")
+  mario_path_(mario_path)
 {
   env_->set_thread_num(consumer_num_);
 

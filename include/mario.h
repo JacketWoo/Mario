@@ -17,7 +17,7 @@ class Version;
 class Mario
 {
 public:
-    Mario(uint32_t consumer_num, Consumer::Handler *h, int32_t retry = 10);
+    Mario(uint32_t consumer_num, Consumer::Handler *h, const std::string& mario_path = "./log", int32_t retry = 10);
     ~Mario();
     Status Put(const std::string &item);
     Status Put(const char* item, int len);

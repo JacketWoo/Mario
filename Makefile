@@ -15,7 +15,7 @@ endif
 OBJECT = mario
 SRC_DIR = ./src
 TEST_DIR = ./test
-OUTPUT = ./output
+OUTPUT = ./lib
 GTEST_DIR = ./gtest-1.7.0/
 
 LIB_PATH = -L./
@@ -59,8 +59,7 @@ $(LIBRARY): $(OBJS)
 	mkdir $(OUTPUT)/lib
 	rm -rf $@
 	ar -rcs $@ $(OBJS)
-	cp -r ./include $(OUTPUT)/
-	mv ./libmario.a $(OUTPUT)/lib/
+	mv ./libmario.a $(OUTPUT)/
 	make -C example
 
 $(OBJECT): $(OBJS)

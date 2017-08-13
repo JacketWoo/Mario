@@ -4,12 +4,12 @@ OBJECT = mario
 SRC_DIR = ./
 
 LIB_PATH = -L../ \
-		   -L../output/lib/
+		   -L../lib/
 
 LIBS = -lmario \
 	   -lpthread
 
-INCLUDE_PATH = -I../output/include/
+INCLUDE_PATH = -I../include/
 
 LIBRARY = libmario.a
 .PHONY: all clean version
