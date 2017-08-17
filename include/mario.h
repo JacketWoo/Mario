@@ -22,12 +22,14 @@ public:
     Status Put(const std::string &item);
     Status Put(const char* item, int len);
     Status Get();
+    uint64_t LagNum();
+    
 
     Env *env() { return env_; }
     WritableFile *writefile() { return writefile_; }
 
     Consumer *consumer() { return consumer_; }
-    Consumer::Handler *h() { return h_; }
+    Consumer::Handler *h() { return h_; } 
 
 private:
 

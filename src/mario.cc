@@ -326,6 +326,15 @@ void Mario::BackgroundCall()
 
     return s;
   }
-
+  
+  uint64_t Mario::LagNum() {
+    MutexLock l(&mutex_);
+#if defined(MARIO_MMAP)
+    return version_->item_num();
+#endif
+#if defined(MARIO_MEMORY)
+    return item_num_;
+#endif
+  }
 
 } // namespace mario

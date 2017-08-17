@@ -4,7 +4,7 @@ OBJECT = p
 SRC_DIR = ./
 
 LIB_PATH = -L../ \
-		   -L../output/lib/
+		   -L../lib/
 
 LIBS = -lmario \
 	   -lpthread

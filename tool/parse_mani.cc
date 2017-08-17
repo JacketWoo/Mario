@@ -14,13 +14,13 @@
 using namespace mario;
 int main(int argc, char** argv)
 {
-    // if (argc < 2) {
-    //     exit(-1);
-    // }
-    // char *path = argv[1];
+    if (argc < 2) {
+        exit(-1);
+    }
+    char *path = argv[1];
 
     Status s;
-    const char *path = "/home/chenzongzhi/git/mario/log/manifest";
+    //const char *path = "/home/chenzongzhi/git/mario/log/manifest";
     Env* env = Env::Default();
     RWFile *versionfile;
     const std::string spath(path, strlen(path));
