@@ -309,8 +309,23 @@ public:
       assert(dst_ <= limit_);
       size_t avail = limit_ - dst_;
       if (avail == 0) {
-        if (!UnmapCurrentRegion() || !MapNewRegion()) {
+        if (!UnmapCurrentRegion()) {
           return IOError(filename_, errno);
+        }
+        if (!MapNewRegion()) {
+          struct stat st;
+          if (!fstat(fd_, &st)
+              && (st.st_mode & S_IFMT) == S_IFREG) {
+            return IOError(filename_, errno); 
+          }
+          int fd = open(filename_.c_str(), O_RDWR);
+          if (fd < 0) {
+            return IOError(filename_, errno);
+          }
+          fd_ = fd;
+          if (!MapNewRegion()) {
+            return IOError(filename_, errno); 
+          }
         }
       }
       size_t n = (left <= avail) ? left : avail;
