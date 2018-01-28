@@ -8,9 +8,15 @@
 namespace mario {
 
 const char* Status::CopyState(const char* state) {
-    uint32_t size;
+    uint32_t size, retry = 5;
     memcpy(&size, state, sizeof(size));
-    char* result = new char[size + 5];
+    char* result = new(std::nothrow) char[size + 5];
+    while (!result && retry--) {
+      result = new(std::nothrow) char[size + 5];
+    }
+    if (!result) {
+      result = new char[size + 5];
+    }
     memcpy(result, state, size + 5);
     return result;
 }
@@ -20,7 +26,14 @@ Status::Status(Code code, const Slice& msg, const Slice& msg2) {
     const uint32_t len1 = static_cast<int>(msg.size());
     const uint32_t len2 = static_cast<int>(msg2.size());
     const uint32_t size = len1 + (len2 ? (2 + len2) : 0);
-    char* result = new char[size + 5];
+    char* result = new(std::nothrow) char[size + 5];
+    uint32_t retry = 5;
+    while (!result && retry--) {
+      result = new(std::nothrow) char[size + 5];
+    }
+    if (!result) {
+      result = new char[size + 5];
+    }
     memcpy(result, &size, sizeof(size));
     result[4] = static_cast<char>(code);
     memcpy(result + 5, msg.data(), len1);
