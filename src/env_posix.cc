@@ -80,6 +80,13 @@ public:
     }
     return Status::OK();
   }
+
+  virtual Status Reverse(uint64_t n) {
+    if (fseek(file_, -n, SEEK_CUR)) {
+      return IOError(filename_, errno);
+    }
+    return Status::OK();
+  }
 };
 
 // pread() based random-access

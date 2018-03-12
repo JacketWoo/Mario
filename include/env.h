@@ -192,6 +192,8 @@ public:
     // REQUIRES: External synchronization
     virtual Status Skip(uint64_t n) = 0;
 
+    virtual Status Reverse(uint64_t n) { return Status::OK(); }
+
 private:
     // No copying allowed
     SequentialFile(const SequentialFile&);

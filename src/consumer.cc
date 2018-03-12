@@ -190,6 +190,7 @@ Status Consumer::Consume(std::string &scratch)
         case kBadRecord:
             return Status::Corruption("Data Corruption");
         case kOldRecord:
+            queue_->Reverse(kHeaderSize);
             return Status::EndFile("Eof");
         default:
             s = Status::Corruption("Unknow reason");
